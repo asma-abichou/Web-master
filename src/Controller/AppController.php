@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AppController
+class AppController extends AbstractController
 {
     /**
      * @return Response
@@ -13,7 +14,16 @@ class AppController
      */
     public function index()
     {
-        return new Response('welcome to our first page');
+        return $this->render('home.html.twig' );
+
+    }
+    /**
+     * @return Response
+     * @Route("/signup", name="sigup_page")
+     */
+    public function signUp()
+    {
+        return $this->render('signup.html.twig' );
 
     }
 
