@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+  {% import 'postMacro.twig' as drow %}
+
+{% block title %} Send Post {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+	<link href="https://fonts.googleapis.com/css?family=Rokkitt" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href=" {{ asset('css/post.css') }}">
+{% endblock  %}
+
+{% block javascripts %}
+	{{ parent() }}
+{% endblock %}
+{% block body %}
+    <section class="hero">
+		<div class="container">
+           <div class="row">
+			   {% for post in posts %}
+				   {{ drow.addPost(post.name, post.likes, post.comments, post.shares ) }}
+			   {% endfor %}
+		   </div>
+			   {{ include('other.html.twig', {backgroundColor: 'gray'}) }}
+			   <div class="col-lg-4">
+					<div class="shadow-lg p-4 mb-2 bg-white author">
+						{% for message in app.flashes %}
+							<span class="alert alert-success">{{ message }}</span>
+						{% endfor %}
+					</div>
+			   </div>
+		</div>
+	</section>
+	<script src="{{ asset('js/addLike.js') }}" defer></script>
+{% endblock %}
